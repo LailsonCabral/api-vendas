@@ -1,9 +1,7 @@
 package com.api_vendinha.api.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * Entidade representando um usuário no sistema.
@@ -13,6 +11,8 @@ import lombok.NoArgsConstructor;
  */
 @Entity
 @Table(name = "users") // Especifica o nome da tabela no banco de dados que será associada a esta entidade.
+@Getter
+@Setter
 @NoArgsConstructor // Gera um construtor sem argumentos, necessário para a criação de instâncias da entidade pelo JPA.
 @AllArgsConstructor // Gera um construtor que aceita argumentos para todos os campos, útil para criar instâncias com todos os dados.
 @Data // Gera automaticamente métodos getters, setters, toString, equals e hashCode.
@@ -34,4 +34,55 @@ public class User {
      */
     @Column(nullable = false) // Especifica que a coluna no banco de dados não pode ser nula.
     private String name;
+
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @Column(name = "cnpj_cpf", nullable = false)
+    private String cnpj_cpf;
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getCnpj_cpf() {
+        return cnpj_cpf;
+    }
+
+    public void setCnpj_cpf(String cnpj_cpf) {
+        this.cnpj_cpf = cnpj_cpf;
+    }
 }

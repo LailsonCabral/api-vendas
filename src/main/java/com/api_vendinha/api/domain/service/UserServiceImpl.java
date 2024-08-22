@@ -44,6 +44,9 @@ public class UserServiceImpl implements UserServiceInterface {
         User user = new User();
         // Define o nome do usuário a partir do DTO.
         user.setName(userRequestDto.getName());
+        user.setEmail(userRequestDto.getEmail());
+        user.setPassword(userRequestDto.getPassword());
+        user.setCnpj_cpf(userRequestDto.getCnpj_cpf());
 
         // Salva o usuário no banco de dados e obtém a entidade persistida com o ID gerado.
         User savedUser = userRepository.save(user);
@@ -52,6 +55,9 @@ public class UserServiceImpl implements UserServiceInterface {
         UserResponseDto userResponseDto = new UserResponseDto();
         userResponseDto.setId(savedUser.getId());
         userResponseDto.setName(savedUser.getName());
+        userResponseDto.setEmail(savedUser.getEmail());
+        userResponseDto.setPassword(savedUser.getPassword());
+        userResponseDto.setCnpj_cpf(savedUser.getCnpj_cpf());
 
         // Retorna o DTO com as informações do usuário salvo.
         return userResponseDto;
