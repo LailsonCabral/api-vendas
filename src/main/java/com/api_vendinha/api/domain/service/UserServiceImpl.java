@@ -7,6 +7,10 @@ import com.api_vendinha.api.domain.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.module.FindException;
+import java.util.Collections;
+import java.util.Optional;
+
 /**
  * Implementação do serviço de usuários.
  *
@@ -62,4 +66,25 @@ public class UserServiceImpl implements UserServiceInterface {
         // Retorna o DTO com as informações do usuário salvo.
         return userResponseDto;
     }
+
+
+    @Override
+    public UserResponseDto update(Long id, UserRequestDto userRequestDto){
+        User usu = userRepository.findById(id).orElseThrow();
+        usu.setName(userRequestDto.getName());
+        usu.setEmail(userRequestDto.getEmail());
+        usu.setPassword(userRequestDto.getPassword());
+        usu.setCnpj_cpf(userRequestDto.getCnpj_cpf());
+        userRepository.save(usu);
+
+        UserResponseDto userResponseDto = new UserResponseDto();
+        userResponseDto.setId(userResponseDto.getId());
+        userResponseDto.setName(usu.getName());
+        userResponseDto.setEmail(usu.getEmail());
+        userResponseDto.setPassword(usu.getPassword());
+        userResponseDto.setCnpj_cpf(usu.getCnpj_cpf());
+
+        return userResponseDto;
+    }
+
 }
