@@ -10,6 +10,7 @@ public class UserResponseDto {
     private String name;
     private String email;
     private String password;
+    private Boolean is_active;
     private String cnpj_cpf;
 
 
@@ -51,5 +52,13 @@ public class UserResponseDto {
 
     public void setCnpj_cpf(String cnpj_cpf) {
         this.cnpj_cpf = cnpj_cpf;
+    }
+
+    public Boolean getIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(Boolean is_active) {
+        this.is_active = is_active;
     }
 }

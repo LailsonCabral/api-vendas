@@ -42,4 +42,9 @@ public class UserController {
     public UserResponseDto update(@PathVariable Long id, @RequestBody UserRequestDto userRequestDto){
         return userService.update(id, userRequestDto);
     }
+
+    @PutMapping(value = "/status/{id}")
+    public UserResponseDto updateStatus(@PathVariable Long id, @RequestBody UserRequestDto userRequestDto){
+        return userService.updateStatus(id, userRequestDto);
+    }
 }

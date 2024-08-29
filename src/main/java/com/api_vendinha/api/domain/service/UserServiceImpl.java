@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserServiceInterface {
         user.setName(userRequestDto.getName());
         user.setEmail(userRequestDto.getEmail());
         user.setPassword(userRequestDto.getPassword());
+        user.setIs_active(userRequestDto.getIs_active());
         user.setCnpj_cpf(userRequestDto.getCnpj_cpf());
 
         // Salva o usuário no banco de dados e obtém a entidade persistida com o ID gerado.
@@ -61,6 +62,7 @@ public class UserServiceImpl implements UserServiceInterface {
         userResponseDto.setName(savedUser.getName());
         userResponseDto.setEmail(savedUser.getEmail());
         userResponseDto.setPassword(savedUser.getPassword());
+        userResponseDto.setIs_active(savedUser.getIs_active());
         userResponseDto.setCnpj_cpf(savedUser.getCnpj_cpf());
 
         // Retorna o DTO com as informações do usuário salvo.
@@ -74,14 +76,32 @@ public class UserServiceImpl implements UserServiceInterface {
         usu.setName(userRequestDto.getName());
         usu.setEmail(userRequestDto.getEmail());
         usu.setPassword(userRequestDto.getPassword());
+        usu.setIs_active(userRequestDto.getIs_active());
         usu.setCnpj_cpf(userRequestDto.getCnpj_cpf());
         userRepository.save(usu);
 
         UserResponseDto userResponseDto = new UserResponseDto();
-        userResponseDto.setId(userResponseDto.getId());
+        userResponseDto.setId(id);
         userResponseDto.setName(usu.getName());
         userResponseDto.setEmail(usu.getEmail());
         userResponseDto.setPassword(usu.getPassword());
+        userResponseDto.setIs_active(usu.getIs_active());
+        userResponseDto.setCnpj_cpf(usu.getCnpj_cpf());
+
+        return userResponseDto;
+    }
+
+    public UserResponseDto updateStatus(Long id, UserRequestDto userRequestDto){
+        User usu = userRepository.findById(id).orElseThrow();
+        usu.setIs_active(userRequestDto.getIs_active());
+        userRepository.save(usu);
+
+        UserResponseDto userResponseDto = new UserResponseDto();
+        userResponseDto.setId(id);
+        userResponseDto.setName(usu.getName());
+        userResponseDto.setEmail(usu.getEmail());
+        userResponseDto.setPassword(usu.getPassword());
+        userResponseDto.setIs_active(usu.getIs_active());
         userResponseDto.setCnpj_cpf(usu.getCnpj_cpf());
 
         return userResponseDto;

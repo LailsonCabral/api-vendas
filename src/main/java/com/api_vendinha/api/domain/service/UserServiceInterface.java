@@ -19,4 +19,5 @@ public interface UserServiceInterface {
      */
     UserResponseDto save(UserRequestDto userRequestDto);
     UserResponseDto update(Long id, UserRequestDto userRequestDto);
+    UserResponseDto updateStatus(Long id, UserRequestDto userRequestDto);
 }

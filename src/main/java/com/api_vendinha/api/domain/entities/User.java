@@ -41,6 +41,9 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "is_active", nullable = false)
+    private Boolean is_active;
+
     @Column(name = "cnpj_cpf", nullable = false)
     private String cnpj_cpf;
 
@@ -84,5 +87,13 @@ public class User {
 
     public void setCnpj_cpf(String cnpj_cpf) {
         this.cnpj_cpf = cnpj_cpf;
+    }
+
+    public Boolean getIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(Boolean is_active) {
+        this.is_active = is_active;
     }
 }
